@@ -1,0 +1,392 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>DAT-201: Wk. 3: More Maps!</title>
+	<meta name="description" content="Technology Rediscovery Learning Module: ">
+	<meta name="author" content="Coral Sheldon-Hess" >
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif|Source+Sans+Pro:300" rel="stylesheet"> 
+	<link rel="shortcut icon" href="https://technologyrediscovery.net/tree.png" type="image/x-icon" >
+	<link rel="stylesheet" href="https://technologyrediscovery.net/style3.css">
+	<link rel="stylesheet" href="https://technologyrediscovery.net/hamburger.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="hamburger-flexbox" class="ham-containermain">
+
+		<div class="ham-column ham-col-left">
+
+			<table class="table-fullwidth">
+				<thead>
+					<tr class="ham-row-header">
+						<th class="cal-th-course">course</th>
+						<th class="cal-th-session">mod</th>
+						<th class="cal-th-topic">topic</th>
+						<th class="cal-th-firstname">first name</th>
+						<th class="cal-th-datecomp">date completed</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>DAT-201</td>
+						<td>Wk. 3</td>
+						<td>Mapping and QGIS</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="ham-row-header">
+						<th colspan="5">
+							module learning objectives
+						</th>
+					</tr>
+					<tr>
+						<td colspan="5" >
+							<ul class="objective-list ">
+
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.C - Maps - QGIS fundamentals</span><span class="objective-text"></span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.D - Maps - Creating study areas</span><span class="objective-text">TR.201.DS.8.D - Maps - Creating study areas</span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.F - Maps - Spatial Joins</span><span class="objective-text"></span></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="hide-for-printing">
+
+				<img src="https://technologyrediscovery.net/data/img/nowhere_ok.png" class="captioned" width="600">
+
+
+				
+				<div class="homelinkLine">
+					<div class="iconCont">
+						<a href="https://technologyrediscovery.net/#java">
+							<i class="material-icons">arrow_back</i>
+						</a>
+					</div>
+					<div class="homeLinkCont">
+						<a href="https://technologyrediscovery.net/" class="homeLink">data analytics master sequence</a>  &gt; map fundamentals
+					</div>
+				</div>
+			</div>
+
+
+			<h1>QGIS Practice </h1>
+
+			<div >
+				<table class="quarterCols">
+					<thead>
+						<tr>
+							<th class="quarterCols-col-topic"></th>
+							<th class="quarterCols-col-content"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="quarterCols-col-topic"><h3>Note: we're doing all of this in class, together. I wrote it out in case that's easier for you, or you want to remind yourself how to do some of this later.</h3></td>
+							<td class="quarterCols-col-content"></td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+			<h2>Adding Layers and Counting Points - Together</h2>
+
+			The Forestry Division of the Department of Public Works has money to plant more trees. What neighborhoods would you tell them to prioritize?
+
+			<ol>
+				<li>Get these data sets, and save them onto your machine:</li>
+				<ul>
+					<li><a href="https://technologyrediscovery.net/data/datasets/pgh_neighborhoods/">Fixed up PGH neighborhoods shapefiles</a></li>
+					<li><a href="https://data.wprdc.org/dataset/city-trees">City of Pittsburgh Trees</a> (CSV)</li>
+
+				</ul>
+				<li>Open QGIS, and start a new project (Project -&gt; New; then do yourself a favor, and choose Project -&gt; Save) .</li>
+				<li>(Optional, but I like it.) In the "Browser" area, find XYZ Tiles, drop it down, and add the OpenStreetMap layer to your map if you want.</li>
+				<li>Add the Neighborhood Shapefiles Layer (Layer -&gt; Add Layer -&gt; Add Vector Layer, and you'll want "fixed_neighborhoods.shp"; close the dialog box after the layer shows up in the Layers box) </li>
+				<li>Right-click on the "fixed_neighborhoods" layer, and zoom to there</li>
+				<li>Have a look at the Attribute Table for the fixed_neighborhoods layer. (Right-click, or there's a button in the toolbar at the top of the screen. It looks a bit like a calendar.) Admire how much data we have, already. </li>
+				<li>Now, we have a LOT of data about trees in our CSV file. We don't want or need all of it. So it's time for a quick digression into data cleaning in Excel:
+					<ul>
+						<li>First off, give your file a better name. I use "pgh_trees." <strong>Don't put spaces into the filename.</strong></li>
+						<li> Columns to keep: id, address, street, common_name, scientific_name, height, width, condition, neighborhood, tract, latitude, longitude - you can keep any others you think you might want to use later, but these are the ones I keep. (Keep note of how many columns are deleted)</li>
+						<li>Now we're going to filter our data and remove the following types of trees: "(Blanks)", "Stump," "Vacant Site *", "Non-sufficient space." (Keep note of how many rows are deleted)
+					</ul>
+				</li>
+				<li>Add the trees as a layer. (Layer -&gt; Add Layer -&gt; Add Delimited Text Layer; choose your csv file, and make sure the file format, geometry definition (point coordinates, x: longitude, y: latitude, Geometry CRS: WGS 84), and layer settings look good)</li>
+				<li>Check out the attribute table for pgh_trees (it'll take a second to load).</li>
+				<li>Take a second and visit Vector -&gt; Analysis Tools -&gt; Basic Statistics for Fields. We can run stats in our GIS software! Choose "height" as your field. After you've soaked up the statistical goodness, close the dialog box.</li>
+				<li>Style the layers how you like. (At the top of the Layers box, you choose the "Open the Layer Styling panel" tooltip. "Single symbol" and "simple marker" are good choices, and you can just choose a color from the drop-down for now.)</li>
+				<li>Save your project.</li>
+				<li>Now, we're going to count our trees, to see how they are dispersed between neighborhoods:
+					<ul>
+						<li>We'll use a tool called "Count Points in Polygon," which is under Vector  -&gt; Analysis Tools</li>
+						<li>It should correctly identify your polygon layer (fixed_neighborhoods) and your points layer (mine is called "pgh_trees"). To make your life better, you'll probably want to give a more useful field name; I use "tree_count" and specify a savefile (ellipsis beside the "Count" field  -&gt; Save To File).</li>
+						<li>It will take a minute to run. That's fine.</li>
+						<li>And then it creates a new layer ("Count"), on top of all of your others. Examine the attribute table.</li>
+						<li>Rename the layer "tree_count." (Right-click on the layer, and Rename is an option.)</li>
+					</ul>
+				</li>
+				<li>Number of trees is nice and all, but the neighborhoods aren't all equal sizes. I'd argue that <em>density</em> of trees is a more useful metric. Conveniently, we can add columns to our attribute table!
+					<ul>
+						<li>Open the attribute table for the tree_count layer.</li>
+						<li>Open the Field Calculator (the icon looks a bit like an abacus).</li>
+						<li>You want to create a new field. Call it "density_tr" (or whatever you like), and set the field type to Decimal Number (real).</li>
+						<li>In the center column, you want to open the Fields and Values option, and double-click tree_count to add it to the Expression box. Now hit the division symbol ("/"), and then double-click on "sqmiles" in the center column. Your expression should read  <em>"tree_count"  /  "sqmiles"</em> </li>
+						<li>After you click OK, you should see the new column in your table. Go ahead and sort by that column (click on the title until it's sorted smallest to largest). ... Yeah.</li>
+						<li>Before we fix this, go ahead and click the pencil icon to exit Edit Mode. It will ask if you want to save. You do.</li>
+					</ul>
+				</li>
+				<li>Now we're going to fix this one neighborhood that doesn't have a square mileage. There are a few steps to do this:
+					<ul><li>It looks like there's no square mileage reported for this neighborhood. Honestly, it's missing a bunch of fields, but that's the one we need.</li>
+						<li>Highlight this row (and only this row), and then open the Field Calculator again.</li>
+						<li>Choose "Update existing field," this time, and below that choose "area." (We're going to fill the "area" column with square meters and then use that value to calculate square miles.)</li>
+						<li>Now we're going to use the Search box above the center column, and enter the word "area." Under Geometry, you should have "$area" as an option. Double-click that. Click "OK." Make sure your area column is in line with other areas.</li>
+						<li>Reopen the Field Calculator. This time we will update the sqmiles field.</li>
+						<li>Grab the area field from the Fields and Values drop-down, and multiply ("*") it by 3.86102e-7. (Sorry, I haven't found a nicer way to do this.)</li>
+						<li>Did the density_tr field populate? If not, how would you populate it? Do it.</li>
+						<li>Click the pencil icon to exit Edit Mode.</li> 
+						<li>Remember to deselect the row (there's an icon in the toolbar to Deselect All).</li>
+					</ul>
+				</li>
+				<li>We want to be able to mouse over our map and see what neighborhood we're looking at, right? So. Right-click on the tree_count layer, and choose Properties.</li>
+				<li>Under Display, you can write HTML to show nicely-formatted pop-ups. To keep this simple, I recommend<br>
+					&nbsp; &nbsp; &nbsp; [% "hood" %] &lt;br&gt; <br>
+					&nbsp; &nbsp; &nbsp; [% "density_tr" %] trees/sqmi</li>
+				<li>OK, let's do a graduated color scheme for tree density. Open the Layer Styling panel again.</li>
+				<li>Switch from Single Symbol to Graduated, and set the column to "density_tr"</li>
+				<li>Choose a color ramp you like (I go with Greens for this map).</li>
+				<li>Choose a Mode (we're going to look at Equal Interval and at Quantile), and then click "Classify."</li>
+				<li>So. Which neighborhoods would you pick?</li>
+			</ol>
+
+			</div>
+		</div>
+
+		<div class="ham-column ham-col-right">
+			<h1>More QGIS Practice</h1>
+			<h2>Joining Flat Files with Vector Layers</h2>
+			Looking at (one aspect of) the digital divide in Pennsylvania.
+			<ol>
+				<li>Get these data sets, and save them onto your machine:
+					<ul>
+					<li>PA Census Tracts from<a href="https://www.census.gov/geo/maps-data/data/tiger-line.html">TIGER/Line Shapefiles</a> - 2018, Web Interface, Census Tracts, Pennsylvania</li>
+					<li><a href="https://factfinder.census.gov">American FactFinder</a> - Internet Access (under Topics -&gt; Housing -&gt; Physical Characteristic), limit Geographies to Census Tracts in Pennsylvania (all) (B28003) </li>
+					</ul>
+				</li>
+				<li>Start a new project (and then save it).</li>
+				<li>Add the Census Tracts shapefile as a layer.</li>
+				<li>Have a look at its attribute table.</li>
+				<li>Clean up the Internet Access (ACS_17_574_B28002_with_ann) file in Excel, to remove data we don't want.
+				<ul>
+					<li>It's vital that we keep the GEO.id2 field, but let's change it to GEO_id2.</li>
+					<li>Let's say we're looking at the estimated number of households without internet access, column HD01_VD13 (second to last column); we should keep that. We'll also want the estimated total number of households (HD01_VD01). We should keep those two columns, plus GEO_id2. We should also give them more useful names: total_households and no_internet_households.</li>
+					<li>We should also remove that explanatory row (row 2).</li>
+				</ul>
+				</li> 
+				<li>Now, we can add it as a delimited text layer. Unlike the tree data file, this one has no geometry. After it's added, change its name to something easier to work with, like "census_data"</li>
+				<li>To add the information from this layer to the attribute table of our census tracts, we need to perform what's called a "Join." Right-click on the census tracts layer, and choose "Properties," and then choose "Joins" on the left-hand menu.</li>
+				<li>Hit the plus sign.</li>
+				<li>Since we're in the Properties of the tracts layer, the join layer will be the census_data layer. We're combining these tables based on the census tract ID, so GEO_id2 will be our join field, and GEOID will be our target field.</li>
+				<li>Click OK, and go look at the attribute table now. (Aren't you glad we changed the layer name on our census data? That said, we could have changed the column label prefix in the layer join dialog box, too, but it's useful to have it match.)</li>
+				<li>Now we're going to add a column to hold the percentage of households without internet. (I called mine "no_net_per.") It's done just like the density of trees in the previous exercise, only we take the number of households without internet and divide by the total number of households in each tract.</li>
+				<li>After we add that column, sort it. Nulls aren't great, right? I propose we highlight those rows and use the Field Calculator to set them to zero.</li>
+				<li>Now we're going to make a graduated color map, just like we did in the first example.</li>
+				<li>We're also going to set the display values on mouse-over.</li>
+			</ol>
+			<br>
+
+			<h2>Bonus content!</h2>
+			<br>
+			Let's see if <a href="https://data.wprdc.org/dataset/neighborhoods1">the WPRDC's copy of the Neighborhoods shapefiles</a> will work for us. We're going to download the files, add Neighborhoods as a vector layer, add the trees layer, and try to count the points. If it doesn't work, we'll try to do the repair. In slightly less detail than above, here's what the fix looks like:
+			<ol>
+				<li>Open Vector -&gt; Topology Checker</li>
+				<li>Click the little wrench ("Configure," if you're fancy)</li>
+				<li>The rule you want to add is "Neighborhoods_ must not have invalid geometries"</li>
+				<li>Click the checkmark to have it show you any neighborhoods with invalid geometries. (Unchecking "Show Errors" will make the red area go away.)</li>
+				<li>Note the neighborhood ID, and select it from the Attribute Table</li>
+				<li>Open the Toolbox (the gear beside Field Calculator), and search for "fix"</li>
+				<li>Open "Fix Geometries," make sure the input layer is Neighborhoods_, make sure the "selected features only" box is checked, and give it a directory and new filename to save the fixed neighborhood to.</li>
+				<li>Now we're going to remove the broken neighborhood from our layer. Maybe you want to save your project first.</li>
+				<li>Go into the Attribute Table of Neighborhoods_. Probably, the neighborhood with the geometry issues is still selected. (There's a "move selection to top" button!)</li>
+				<li>Click the pencil to put the table in Edit Mode, and then (making sure only the one row is highlighted) click the trash can to remove this attribute. Click the pencil again to exit edit mode, and save the changes.</li>
+				<li>Now we have to put our fixed neighborhood back into its parent layer. Go to Vector -&gt; Data Management Tools -&gt; Merge Vector Layers, and choose Neighborhoods_ and Fixed geometries as your input layers. Give a location for the saved file to go (obviously, I called mine "fixed_neighborhoods" when I did this in the past).</li>
+			</ol>
+
+			<br>
+
+			<h2>Extra bonus content! - Drawing your own polygons</h2>
+			<br>
+			We're going to draw a couple of Canadian provinces (because they're easier than most states, and we can all use a brush up on Canadian geography).<br>	
+			<ol><li>Start a new project.</li>
+				<li>Add OpenStreetMap as a layer.</li>
+				<li>Create a new shapefile layer. (Layer -&gt; Create Layer -&gt; New Shapefile Layer)
+					<ul><li>Save it as "provinces.shp" in the directory you're working in tonight.</li>
+						<li>Set it as a <em>polygon</em> geometry type.</li>
+						<li>Add fields "id" (whole number) and "name" (text).</li>
+						<li>Canada is kind of far north. There might be a better projection to use, but for now, let's go with the project's CRS -- EPSG 3857, Pseudo-Mercator.</li>
+					</ul>
+				</li>
+				<li>Make sure you have the Digitizing Toolbar turned on (View -&gt; Toolbars -&gt; Digitizing Toolbar)</li>
+				<li>In the Digitizing Toolbar, enable editing (pencil) and choose the Add Polygon Feature tool (looks like a golf course or a green swimming pool with a little orange star under it)</li>
+				<li>Trace Saskatchewan. Right-click when you're finished, and a little table will pop up, asking you to enter an id (1) and the name of the province.</li>
+				<li>Now, before we start Alberta, do yourself a favor, and turn on the Enable Snapping tool (looks like a horseshoe or magnet)</li>
+				<li>Now you can snap to the top left corner of Saskatchewan, to start drawing Alberta. It'll also snap to the bottom left corner when you finish.</li>
+			</ol>
+<br>
+			<h2>Now it's your turn.</h2> <p>
+			Look through the <a href="http://www.pasda.psu.edu">PASDA</a> data sets, and make a map and a data-based assertion that's interesting to you. If none of the data sets speak to you, please look at how many <a href="http://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=283">oil and gas</a> or <a href="http://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=271">coal</a> operations are being run in the <a href="http://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=59">Chesapeake Bay watershed</a> (or Allegheny County or any other subset of the state of interest to you). There are also <a href="http://www.pasda.psu.edu/uci/DataSummary.aspx?dataset=284">oil and gas water pollution control facilities</a>, if you'd like to look at those. Don't forget to cite your data sources, and keep a log of the changes you make, so that another data analyst could follow your steps.</p>
+			<p>You have enough tools to get started on a project using Census data, as well. Explore American Factfinder (or any other source of data we've covered in 102 or 201), and think about what kind of map you'd like to make for your mapping project, which is due on March 4. We'll talk about what we're planning to do for our project and any initial steps we've taken at the beginning of next class.</p>
+
+			<div class="specification hide-for-printing" style="display:none">
+
+				<table class="quarterCols">
+					<thead>
+						<tr>
+							<th class="quarterCols-col-topic"></th>
+							<th class="quarterCols-col-content"></th>
+						</tr>
+
+					</thead>
+					<tbody>
+
+						<tr>
+							<td class="quarterCols-col-topic"><h3>Mapping tutorial goal</h3></td>
+							<td class="quarterCols-col-content"><p>Count the number of trees points bounded by various geographic polygons in Allegheny County</p></td>
+						</tr>
+						<tr>
+
+							<td class="quarterCols-col-topic">
+								<h3>program requirement 1</h3>
+							</td>
+
+							<td class="quarterCols-col-content">
+								<p>Add point and polygon layers to a QGIS map and appropriately symbolize their markers</p>
+								<p>Use the count points within analysis tool for vector graphics to compare the tree count and density by geographic area</p>
+
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="button-row">
+
+
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="note-card-button">
+				<i class="material-icons">expand_more</i>show note card diagnostic
+			</button>
+			<script type="text/javascript">
+				var cardcounter = 0;
+				$( "#note-card-button").click(function() {
+					$( "#repcard" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="print-button">
+				<i class="material-icons">print</i>prepare for printing
+			</button>
+			<script type="text/javascript">
+				var printcounter = 0;
+				
+
+				$( "#print-button").click(function() {
+					if(printcounter%2==0){
+						$(".hide-for-printing").hide();
+						$("#print-button").text("bring back content!");
+					} else{
+
+						$(".hide-for-printing").show();
+						$("#print-button").text("prepare for printing");
+					}
+					printcounter++;
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="flexwrap-button">
+				<i class="material-icons">view_column</i>form single column
+			</button>
+			<script type="text/javascript">
+				var flexwrapcounter = 0;
+				
+
+				$( "#flexwrap-button").click(function() {
+					if(flexwrapcounter%2==0){
+						$("#hamburger-flexbox").removeClass("ham-containermain");
+						$("#hamburger-flexbox").addClass("ham-containermain-allow-wrap");
+						$("#flexwrap-button").text("back to two columns");
+					} else{
+						$("#hamburger-flexbox").removeClass("ham-containermain-allow-wrap");
+						$("#hamburger-flexbox").addClass("ham-containermain");
+						$("#flexwrap-button").text("form single column");
+					}
+					flexwrapcounter++;
+				});
+			</script>
+		</div>
+		<div class="button-container">
+			<button class="button no-background ham-button" id="page-history-button">
+				<i class="material-icons">history</i>show revision history
+			</button>
+			<script type="text/javascript">
+				var hiscounter = 0;
+				$( "#page-history-button").click(function() {
+					$( "#history" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+	</div>
+
+	<div class="expanded-content">
+		
+		<div class="page-revision-history-left">
+
+			<div id="history" class="hidable ham-page-history" style="display: none;">
+
+				<p>10-FEB-19: Created as a backup for people who like written directions better than following along with on-screen tutorials</p>
+
+			</div>
+
+
+
+
+
+			<div class="notecard captioned" id="repcard" style="display: none;">
+				<div class="notecard-title-left notecard-text">
+					Projection concepts
+				</div>
+
+				<p class="notecard-text">Jot out a triangular region in the USA with the following three cities as verticies: Pittsburgh, PA; Minneapolis, MN; and Memphis, TN.</p>
+				<p class="notecard-text">Given a map extent centered in Pittsburgh, which projection type would lobbyists of the following interests prefer and why?</p>
+				<ol>
+					<li>Advocates for lower agriculture taxes based on square miles farmed</li>
+					<li>Advocates for federal funding based on highway miles</li>
+				</ol>
+
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+

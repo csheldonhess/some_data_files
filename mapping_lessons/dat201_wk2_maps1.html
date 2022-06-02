@@ -1,0 +1,319 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>DAT-201: Wk. 2: Maps!</title>
+	<meta name="description" content="Technology Rediscovery Learning Module: ">
+	<meta name="author" content="Eric Darsow" >
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif|Source+Sans+Pro:300" rel="stylesheet"> 
+	<link rel="shortcut icon" href="https://technologyrediscovery.net/tree.png" type="image/x-icon" >
+	<link rel="stylesheet" href="https://technologyrediscovery.net/style3.css">
+	<link rel="stylesheet" href="https://technologyrediscovery.net/hamburger.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="hamburger-flexbox" class="ham-containermain">
+
+		<div class="ham-column ham-col-left">
+
+			<table class="table-fullwidth">
+				<thead>
+					<tr class="ham-row-header">
+						<th class="cal-th-course">course</th>
+						<th class="cal-th-session">mod</th>
+						<th class="cal-th-topic">topic</th>
+						<th class="cal-th-firstname">first name</th>
+						<th class="cal-th-datecomp">date completed</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>DAT-201</td>
+						<td>Wk. 2</td>
+						<td>Classifying data</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="ham-row-header">
+						<th colspan="5">
+							module learning objectives
+						</th>
+					</tr>
+					<tr>
+						<td colspan="5" >
+							<ul class="objective-list ">
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.A - Maps - Projections</span><span class="objective-text"></span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.B - Maps - Vector (points, lines, and polys) &amp; raster (bands)</span><span class="objective-text"></span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.C - Maps - QGIS fundamentals</span><span class="objective-text"></span></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="hide-for-printing">
+
+				<img src="https://technologyrediscovery.net/img/homeHeader_purpleFlowers.jpg" class="captioned" width="600">
+
+
+				
+				<div class="homelinkLine">
+					<div class="iconCont">
+						<a href="https://technologyrediscovery.net/#java">
+							<i class="material-icons">arrow_back</i>
+						</a>
+					</div>
+					<div class="homeLinkCont">
+						<a href="https://technologyrediscovery.net/" class="homeLink">data analytics master sequence</a>  &gt; map fundamentals
+					</div>
+				</div>
+			</div>
+
+
+			<h1>Map projections</h1>
+
+			<div class="overview hide-for-printing">
+				<table class="quarterCols">
+					<thead>
+						<tr>
+							<th class="quarterCols-col-topic"></th>
+							<th class="quarterCols-col-content"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="quarterCols-col-topic"><h3>key points</h3></td>
+							<td class="quarterCols-col-content"></td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+			<h2>Projection activity sequence</h2>
+
+			<ol>
+				<li>Acquire these materials:</li>
+				<ul>
+					<li>A blow-up globe ~6" in diameter</li>
+					<li>5 sheets of transparency film</li>
+					<li>Clear tape to tape the transparency film together end-to-end</li>
+					<li>Sharpie marker, the finer point the better</li>
+					<li>A 12" ruler</li>
+					<li>A 180-deg Protractor</li>
+				</ul>
+				<li>Create two panels with your transparency film</li>
+					<ul>
+						<li>A two-sheet rectangle formed by taping the short ends of two letter-sized sheets of transparency film end-to-end that can be then shaped into a cone hat for the blow-up globe</li>
+						<li>A three-sheet rectangle formed by taping the short ends of THREE letter-sized sheets of transparency film end-to-end that can be shaped into a cylinder whose diameter equals that of the globe</li>
+					</ul>
+				<li>Using strips of clear tape, shape the two-sheet rectangle into a cone whose base is large enough that the blow-up globe's equator fits entirely inside the three dimensional space bounded by the cone. Fix the cone into shape with the clear tape. </li>
+				<li>Follow the same procedure to create a clear cylinder into which you can slide the blow-up globe. Fix this into shape with clear tape as well</li>
+				<li>Since CCAC is in the Northern Hemisphere, orient your globe inside each of the projection surfaces such that the continental USA and nearby countries are approximately covered (such that we can project points representing landmarks or borders onto the transparency film. We need to be able to project the same points onto both our cone and our cylinder.</li>
+				<li>When you have carefully oriented the globe in each projection, transfer major latitude and longitudinal lines from the globe onto each of your projections such that the globe is fixed in orientation inside your projection solid. For example, drawing the 40-degrees north latitude line and the -80 degrees West longitude onto your projections will allow you to position the globe at the northern hemisphere's intersection of these two orienting lines (which is close to Pittsburgh, PA.)</li>
+
+			</ol>
+
+			</div>
+		</div>
+
+		<div class="ham-column ham-col-right">
+			<h1>Intro to QGIS &amp; vector mapping</h1>
+
+			<h3>Map projection links:</h3>
+			<p>
+				<ul>
+					<li><a href="http://bl.ocks.org/syntagmatic/raw/ba569633d51ebec6ec6e/">A tool showing map projection distortions</a></li>
+					<li><a href="https://thetruesize.com/ ">A tool that lets you compare the true sizes of various geographical and political boundaries</a></li>
+					<li><a href="http://www.gis.osu.edu/misc/map-projections/">A map projection/distortion visualization</a></li>
+					<li><a href="https://xkcd.com/977/">This one's just a joke, really</a> and <a href="https://www.explainxkcd.com/wiki/index.php/977:_Map_Projections">here's the explanation</a></li>
+				</ul>
+			</p>
+			<h3>(Q)GIS help and data sources:</h3>
+				<ul>
+					<li><a href="https://docs.qgis.org/testing/en/docs/user_manual/">QGIS 3.4 documentation</a></li>
+					<li><a href="https://data.wprdc.org/dataset">WPRDC data sets</a> (<a href="https://technologyrediscovery.net/data/datasets/pgh_neighborhoods/">here is a modified version of Pittsburgh neighborhoods for tonight</a>)</li>
+					<li><a href="http://www.pasda.psu.edu/">Pennsylvania Spatial Data Access</a></li>
+					<li><a href="https://factfinder.census.gov">American FactFinder (US Census)</a></li>
+					<li><a href="https://www.census.gov/geo/maps-data/data/tiger-line.html">TIGER/Line Files (US Census)</a></li>
+				</ul></p>
+				
+
+		<h2>Implications of projections</h2>
+			<p>Question 1: Review the data gathered from the exercise: Which projection system maintains greater angular fidelity? Which maintains greater distance fidelity to the spherical globe? Use data to back your claim.</p>
+			<textarea cols="145" rows="12" class="textbox-full-col" ></textarea>
+			<p>Question 2: Describe the ideal use cases for each type of projection system given the range of possible uses of a map. (Consider navigation, surveying, representations at various scales, etc.)</p>
+			<textarea cols="145" rows="12" class="textbox-full-col" ></textarea>
+
+
+			<div class="specification hide-for-printing">
+
+				<table class="quarterCols">
+					<thead>
+						<tr>
+							<th class="quarterCols-col-topic"></th>
+							<th class="quarterCols-col-content"></th>
+						</tr>
+
+					</thead>
+					<tbody>
+
+						<tr>
+							<td class="quarterCols-col-topic"><h3>Mapping tutorial goal</h3></td>
+							<td class="quarterCols-col-content"><p>Count the number of trees points bounded by various geographic polygons in Allegheny County</p></td>
+						</tr>
+						<tr>
+
+							<td class="quarterCols-col-topic">
+								<h3>program requirement 1</h3>
+							</td>
+
+							<td class="quarterCols-col-content">
+								<p>Add point and polygon layers to a QGIS map and appropriately symbolize their markers</p>
+								<p>Use the count points within analysis tool for vector graphics to compare the tree count and density by geographic area</p>
+
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+
+			<h2>Analysis results</h2>
+			<p>Capture your data in the following table:</p>
+
+			<table class="table-fullwidth">
+				<tr>
+					<td>Point layer name and description:<br /></td>
+					<td colspan="2">Polygon layer name and description:<br /></td>
+				</tr>
+				<tr>
+					<td>Polygon 1 ID:</td>
+					<td>Count of points in Polygon 1:</td>
+					<td>Density of points in Polygon 1 (count / area):</td>
+				</tr>
+				<tr>
+					<td>Polygon 2 ID:</td>
+					<td>Count of points in Polygon 2:</td>
+					<td>Density of points in Polygon 2(count / area):</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</div>
+
+	<div class="button-row">
+
+
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="note-card-button">
+				<i class="material-icons">expand_more</i>show note card diagnostic
+			</button>
+			<script type="text/javascript">
+				var cardcounter = 0;
+				$( "#note-card-button").click(function() {
+					$( "#repcard" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="print-button">
+				<i class="material-icons">print</i>prepare for printing
+			</button>
+			<script type="text/javascript">
+				var printcounter = 0;
+				
+
+				$( "#print-button").click(function() {
+					if(printcounter%2==0){
+						$(".hide-for-printing").hide();
+						$("#print-button").text("bring back content!");
+					} else{
+
+						$(".hide-for-printing").show();
+						$("#print-button").text("prepare for printing");
+					}
+					printcounter++;
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="flexwrap-button">
+				<i class="material-icons">view_column</i>form single column
+			</button>
+			<script type="text/javascript">
+				var flexwrapcounter = 0;
+				
+
+				$( "#flexwrap-button").click(function() {
+					if(flexwrapcounter%2==0){
+						$("#hamburger-flexbox").removeClass("ham-containermain");
+						$("#hamburger-flexbox").addClass("ham-containermain-allow-wrap");
+						$("#flexwrap-button").text("back to two columns");
+					} else{
+						$("#hamburger-flexbox").removeClass("ham-containermain-allow-wrap");
+						$("#hamburger-flexbox").addClass("ham-containermain");
+						$("#flexwrap-button").text("form single column");
+					}
+					flexwrapcounter++;
+				});
+			</script>
+		</div>
+		<div class="button-container">
+			<button class="button no-background ham-button" id="page-history-button">
+				<i class="material-icons">history</i>show revision history
+			</button>
+			<script type="text/javascript">
+				var hiscounter = 0;
+				$( "#page-history-button").click(function() {
+					$( "#history" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+	</div>
+
+	<div class="expanded-content">
+		
+		<div class="page-revision-history-left">
+
+			<div id="history" class="hidable ham-page-history" style="display: none;">
+
+				<p>3-FEB-19: Created following in-person conferencing with Coral at CCAC on Friday 1 Feb</p>
+
+			</div>
+
+
+
+
+
+			<div class="notecard captioned" id="repcard" style="display: none;">
+				<div class="notecard-title-left notecard-text">
+					Projection concepts
+				</div>
+
+				<p class="notecard-text">Jot out a triangular region in the USA with the following three cities as verticies: Pittsburgh, PA; Minneapolis, MN; and Memphis, TN.</p>
+				<p class="notecard-text">Given a map extent centered in Pittsburgh, which projection type would lobbyists of the following interests prefer and why?</p>
+				<ol>
+					<li>Advocates for lower agriculture taxes based on square miles farmed</li>
+					<li>Advocates for federal funding based on highway miles</li>
+				</ol>
+
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+

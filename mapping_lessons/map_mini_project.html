@@ -1,0 +1,190 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Map Mini-Project Guidelines</title>
+	<meta name="description" content="Technology Rediscovery Learning Module: ">
+	<meta name="author" content="Coral Sheldon-Hess" >
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif|Source+Sans+Pro:300" rel="stylesheet"> 
+	<link rel="shortcut icon" href="https://technologyrediscovery.net/tree.png" type="image/x-icon" >
+	<link rel="stylesheet" href="https://technologyrediscovery.net/style3.css">
+	<link rel="stylesheet" href="https://technologyrediscovery.net/hamburger.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="hamburger-flexbox" class="ham-containermain">
+
+		<div class="ham-column ham-col-left">
+
+			<table class="table-fullwidth">
+				<thead>
+					<tr class="ham-row-header">
+						<th class="cal-th-course">course</th>
+						<th class="cal-th-session">mod</th>
+						<th class="cal-th-topic">topic</th>
+						<th class="cal-th-firstname">first name</th>
+						<th class="cal-th-datecomp">date completed</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>DAT-201</td>
+						<td></td>
+						<td>Map Project</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="ham-row-header">
+						<th colspan="5">
+							module learning objectives
+						</th>
+					</tr>
+					<tr>
+						<td colspan="5" >
+							<ul class="objective-list ">
+
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.9.E</span><span class="objective-text"> - Clients - Feedback presentations</span></li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="hide-for-printing">
+
+				<img src="https://technologyrediscovery.net/data/img/nowhere_ok.png" class="captioned" width="600">
+
+
+				
+				<div class="homelinkLine">
+					<div class="iconCont">
+						<a href="https://technologyrediscovery.net/#java">
+							<i class="material-icons">arrow_back</i>
+						</a>
+					</div>
+					<div class="homeLinkCont">
+						<a href="https://technologyrediscovery.net/" class="homeLink">data analytics master sequence</a>  &gt; map fundamentals
+					</div>
+				</div>
+			</div>
+
+
+			<h1>Map Mini-Project Specification </h1>
+
+			<div >
+
+			Pieces we expect to see in your presentation for the mapping project:
+			<ul>
+				<li>A question.</li>
+				<li>A fully-baked map layout.</li>
+				<li>A high-level description of the steps you took. (Scale this for a general client, not for an audience of data analysts.)</li>
+				<li>Data-backed claim (or claims) that address your question. Maybe they don't answer it fully, and that's OK, but if there is more question left after your claims, a brief plan about how to answer those would be good to include.</li>
+			</ul>
+			Pieces you'll need to turn in digitally:
+			<ul>
+				<li>Your processing log, which should be sufficiently detailed that we could hand it to one of your classmates and ask them to create the same map you turned in. (We might actually do this.)</li>
+				<li>A PDF copy of your map layout.</li>
+				<li>Citations of all of your data sources (this can be part of the processing log document&mdash;and may <em>have</em> to be, for more complicated-to-get-to pieces of data, like ACS sheets).</li>
+			</ul>
+		</div></div>
+
+	</div>
+
+	<div class="button-row">
+
+
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="note-card-button">
+				<i class="material-icons">expand_more</i>show note card diagnostic
+			</button>
+			<script type="text/javascript">
+				var cardcounter = 0;
+				$( "#note-card-button").click(function() {
+					$( "#repcard" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="print-button">
+				<i class="material-icons">print</i>prepare for printing
+			</button>
+			<script type="text/javascript">
+				var printcounter = 0;
+				
+
+				$( "#print-button").click(function() {
+					if(printcounter%2==0){
+						$(".hide-for-printing").hide();
+						$("#print-button").text("bring back content!");
+					} else{
+
+						$(".hide-for-printing").show();
+						$("#print-button").text("prepare for printing");
+					}
+					printcounter++;
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="flexwrap-button">
+				<i class="material-icons">view_column</i>form single column
+			</button>
+			<script type="text/javascript">
+				var flexwrapcounter = 0;
+				
+
+				$( "#flexwrap-button").click(function() {
+					if(flexwrapcounter%2==0){
+						$("#hamburger-flexbox").removeClass("ham-containermain");
+						$("#hamburger-flexbox").addClass("ham-containermain-allow-wrap");
+						$("#flexwrap-button").text("back to two columns");
+					} else{
+						$("#hamburger-flexbox").removeClass("ham-containermain-allow-wrap");
+						$("#hamburger-flexbox").addClass("ham-containermain");
+						$("#flexwrap-button").text("form single column");
+					}
+					flexwrapcounter++;
+				});
+			</script>
+		</div>
+		<div class="button-container">
+			<button class="button no-background ham-button" id="page-history-button">
+				<i class="material-icons">history</i>show revision history
+			</button>
+			<script type="text/javascript">
+				var hiscounter = 0;
+				$( "#page-history-button").click(function() {
+					$( "#history" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+	</div>
+
+	<div class="expanded-content">
+		
+		<div class="page-revision-history-left">
+
+			<div id="history" class="hidable ham-page-history" style="display: none;">
+
+				<p>16-FEB-19: Created.</p>
+
+			</div>
+
+
+		</div>
+	</div>
+	
+</body>
+</html>
+
+

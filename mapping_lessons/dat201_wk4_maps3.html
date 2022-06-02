@@ -1,0 +1,298 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>DAT-201: Wk.43: More Maps!</title>
+	<meta name="description" content="Technology Rediscovery Learning Module: ">
+	<meta name="author" content="Coral Sheldon-Hess" >
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Serif|Source+Sans+Pro:300" rel="stylesheet"> 
+	<link rel="shortcut icon" href="https://technologyrediscovery.net/tree.png" type="image/x-icon" >
+	<link rel="stylesheet" href="https://technologyrediscovery.net/style3.css">
+	<link rel="stylesheet" href="https://technologyrediscovery.net/hamburger.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<div id="hamburger-flexbox" class="ham-containermain">
+
+		<div class="ham-column ham-col-left">
+
+			<table class="table-fullwidth">
+				<thead>
+					<tr class="ham-row-header">
+						<th class="cal-th-course">course</th>
+						<th class="cal-th-session">mod</th>
+						<th class="cal-th-topic">topic</th>
+						<th class="cal-th-firstname">first name</th>
+						<th class="cal-th-datecomp">date completed</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>DAT-201</td>
+						<td>Wk. 4</td>
+						<td>QGIS and Map Layouts</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="ham-row-header">
+						<th colspan="5">
+							module learning objectives
+						</th>
+					</tr>
+					<tr>
+						<td colspan="5" >
+							<ul class="objective-list ">
+
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.F </span><span class="objective-text">- Maps - Spatial Joins</span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.D </span><span class="objective-text">- Maps - Creating study areas</span></li>
+								<li class="objective-list-item"><span class="objective-num">TR.201.DS.8.G </span><span class="objective-text">- Maps - Layouts &amp; printing</span></li>
+
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="hide-for-printing">
+
+				<img src="https://technologyrediscovery.net/data/img/sign_post_forest.jpg" class="captioned" width="600">
+
+
+				
+				<div class="homelinkLine">
+					<div class="iconCont">
+						<a href="https://technologyrediscovery.net/#java">
+							<i class="material-icons">arrow_back</i>
+						</a>
+					</div>
+					<div class="homeLinkCont">
+						<a href="https://technologyrediscovery.net/" class="homeLink">data analytics master sequence</a>  &gt; map fundamentals
+					</div>
+				</div>
+			</div>
+
+
+			<h1>Some More QGIS Practice </h1>
+
+			<div >
+				<table class="quarterCols">
+					<thead>
+						<tr>
+							<th class="quarterCols-col-topic"></th>
+							<th class="quarterCols-col-content"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td ><h3>Note: we're doing all of this in class, together. I wrote it out in case that's easier for you, or you want to remind yourself how to do some of this later.</h3></td>
+						</tr>
+						
+					</tbody>
+				</table>
+
+			<h2>Sharing Our Maps</h2>
+			<br>
+			Let's look at the PASDA- (or other data source-) derived maps we've created over the last week!
+			What is a data-backed assertion you can make, based on the map you've made?<br><br>
+			Also, it's time to start talking about the mid-semester project. What are you going to work on? Write down a draft(!) question that you hope to answer with the map(s) you'll create, and we'll discuss them and then put them on the board for future weeks.<br><br>
+
+			<h2>Fixing Broken Shapefiles</h2>
+			<br>
+			Let's see if <a href="https://data.wprdc.org/dataset/neighborhoods1">the WPRDC's copy of the Neighborhoods shapefiles</a> will work for us. We're going to<ul><li> download the files,</li> <li>add Neighborhoods as a vector layer,</li> <li>add the cleaned up trees file as a delimited text layer, and</li> <li>run Count Points in Polygon.</li></ul> If it doesn't work, we'll try to do the repair. In slightly less detail than <a href="dat201_wk3_maps2.html">week 3's descriptions</a>, here's what the fix looks like:
+			<ol>
+				<li>Open Vector -&gt; Topology Checker</li>
+				<li>Click the little wrench ("Configure," if you're fancy)</li>
+				<li>The rule you want to add is "Neighborhoods_ must not have invalid geometries"</li>
+				<li>Click the checkmark to have it show you any neighborhoods with invalid geometries. (Unchecking "Show Errors" will make the red area go away.)</li>
+				<li>Note the neighborhood ID, and select it from the Attribute Table</li>
+				<li>Open the Toolbox (the gear beside Field Calculator), and search for "fix"</li>
+				<li>Open "Fix Geometries," make sure the input layer is Neighborhoods_, make sure the "selected features only" box is checked, and give it a directory and new filename to save the fixed neighborhood to.</li>
+				<li>Now we're going to remove the broken neighborhood from our layer. Maybe you want to save your project first.</li>
+				<li>Go into the Attribute Table of Neighborhoods_. Probably, the neighborhood with the geometry issues is still selected. (There's a "move selection to top" button!)</li>
+				<li>Click the pencil to put the table in Edit Mode, and then (making sure only the one row is highlighted) click the trash can to remove this attribute. Click the pencil again to exit edit mode, and save the changes.</li>
+				<li>Now we have to put our fixed neighborhood back into its parent layer. Go to Vector -&gt; Data Management Tools -&gt; Merge Vector Layers, and choose Neighborhoods_ and Fixed geometries as your input layers. Give a location for the saved file to go (obviously, I called mine "fixed_neighborhoods" when I did this in the past).</li>
+			</ol>
+
+			<br>
+
+			<h2>Drawing your own polygons</h2>
+			<br>
+			We're going to draw a couple of Canadian provinces (because they're easier than most states, and we can all use a brush up on Canadian geography).<br>	
+			<ol><li>Start a new project.</li>
+				<li>Add OpenStreetMap as a layer.</li>
+				<li>Create a new shapefile layer. (Layer -&gt; Create Layer -&gt; New Shapefile Layer)
+					<ul><li>Save it as "provinces.shp" in the directory you're working in tonight.</li>
+						<li>Set it as a <em>polygon</em> geometry type.</li>
+						<li>Add fields "id" (whole number) and "name" (text).</li>
+						<li>Canada is kind of far north. There might be a better projection to use, but for now, let's go with the project's CRS -- EPSG 3857, Pseudo-Mercator.</li>
+					</ul>
+				</li>
+				<li>Make sure you have the Digitizing Toolbar turned on (View -&gt; Toolbars -&gt; Digitizing Toolbar)</li>
+				<li>In the Digitizing Toolbar, enable editing (pencil) and choose the Add Polygon Feature tool (looks like a golf course or a green swimming pool with a little orange star under it)</li>
+				<li>Trace Saskatchewan. Right-click when you're finished, and a little table will pop up, asking you to enter an id (1) and the name of the province.</li>
+				<li>Now, before we start Alberta, do yourself a favor, and turn on the Enable Snapping tool (looks like a horseshoe or magnet)</li>
+				<li>Now you can snap to the top left corner of Saskatchewan, to start drawing Alberta. It'll also snap to the bottom left corner when you finish.</li>
+			</ol>
+		</div></div>
+
+		<div class="ham-column ham-col-right">
+			<h1>Layouts</h1>
+			<h2>Sharing Maps Outside of QGIS</h2>
+
+			We will want to communicate with people who don't have QGIS, sometimes. Creating print map layouts will help us do so effectively.<br><br>
+
+			For this exercise you can choose any of the maps you've created in class or for homework. I will use the map showing percentage of households without internet that we created last session, but you are not constrained by my choices, here.<br>
+
+			<ol>
+				<li>Open the project you want to create a map of.</li>
+				<li>Zoom in/out until the area you want to map is taking up most of the map panel.</li>
+				<li>Go to Project -&gt; New Print Layer, and give your print layout a title. This title will be the default filename for your map when you export it to PDF (or JPG, but use PDF). It will also be how you pull it back up when you want to re-export.</li>
+				<li>To add your map to your layout, go to Add Item -&gt; Add Map.
+				<ul>
+					<li>When you mouse over the page on the screen, crosshairs will appear.</li>
+					<li>Hold down the left mouse button and drag to select how much of your page your map will take up. You'll be able to resize and reposition as needed, later.</li>
+				</ul>
+				</li>
+				<li>When you have your map on your page, go ahead and save.</li>
+				<li>Now let's add a legend using the Add Item menu. 
+				<ul>
+					<li>Consider changing its title to something more helpful (or at least "Legend") under Main Properties -&gt; Title. If you use a long title, you can add a character to wrap on. (On one map I wrapped on the character "x" and used the title "Households xWithout Internet")</li>
+					<li>Under Legend Items, you have the option to turn layers/groups on and off by right-clicking and choosing "Hidden." (QGIS may require you to turn off "Auto Update" first.)</li>
+					<li>You can also relabel your layers by clicking the pencil-and-paper button below the Legend Items box.</li>
+				</ul></li>
+				<li>If you'd like to add a compass rose, you can go to Add Item -&gt; Add Picture, and the ellipsis to choose a file should take you to a pre-loaded list of pictures. You can try several out, to see which you like.</li>
+				<li>A title, other commentary, citations for data sources, and any other text labels you might like to add are under Add Item -&gt; Add Label. You can use HTML markup to style your text--remember to check the "Render as HTML" box.</li>
+				<li>To add a grid, select your map item, scroll down within the Item Properties box until you get to Grids. Expand that option, hit the plus sign, and click "Modify grid". There are ... lots of options.</li>
+				<li>Once you've added items to your heart's content and you're ready to make a sharable map, go to Layout -&gt; Export as PDF.</li>
+			</ol>
+
+			If you want to make an overview map, the directions are very similar; only, you'll add your zoomed-in area as a map, and then you'll zoom back out and add a second map.
+			<ol>
+				<li>With the second map selected, in the Item Properties tab, open the Overviews dropdown.</li>
+				<li>Click the plus mark to add an overview. (You can double-click and name it something  more descriptive than "Overview 1," if you choose to do so.) </li>
+				<li>Assuming the wide area map is Map 2 and the zoomed-in area map is Map 1, you'll choose Map 1 as your Map frame.</li>
+				<li>Choose a Frame Style that makes sense. (Simple fill in red is often a default, but if you're doing this on a map that's colored in shades of red, you might choose a different color/style.)</li>
+				<li>Blending Mode might look familiar if you've used Photoshop in the past. Try a few different ones and see what looks best. I seem to be mostly drawn to Normal and Burn.</li>
+			</ol>
+<br>
+			<h2>Practice!</h2><br>
+			Each person should come up with a question that can be answered by another person's map of choice. (A little recoloring is fine, but don't make them add new layers. Our goal here is that it should be answerable with a well-chosen layout.) Take the question you were given, and try to design a layout that answers that question.<br><br>
+
+			<h2>Homework</h2> <p>
+			You have a draft question for your project. You have some serious QGIS mapping skills. So you'll want to make progress on your project this week.<br><br>
+			Pieces we expect to see in your presentation for the mapping project:
+			<ul>
+				<li>A question.</li>
+				<li>A fully-baked map layout.</li>
+				<li>A high-level description of the steps you took. (Scale this for a general client, not for an audience of data analysts.)</li>
+				<li>Data-backed claim (or claims) that address your question. Maybe they don't answer it fully, and that's OK, but if there is more question left after your claims, a brief plan about how to answer those would be good to include.</li>
+			</ul>
+			Pieces you'll need to turn in digitally:
+			<ul>
+				<li>Your processing log, which should be sufficiently detailed that we could hand it to one of your classmates and ask them to create the same map you turned in. (We might actually do this.)</li>
+				<li>A PDF copy of your map layout.</li>
+				<li>Citations of all of your data sources (this can be part of the processing log document&mdash;and may <em>have</em> to be, for more complicated-to-get-to pieces of data, like ACS sheets).</li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<div class="button-row">
+
+
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="note-card-button">
+				<i class="material-icons">expand_more</i>show note card diagnostic
+			</button>
+			<script type="text/javascript">
+				var cardcounter = 0;
+				$( "#note-card-button").click(function() {
+					$( "#repcard" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="print-button">
+				<i class="material-icons">print</i>prepare for printing
+			</button>
+			<script type="text/javascript">
+				var printcounter = 0;
+				
+
+				$( "#print-button").click(function() {
+					if(printcounter%2==0){
+						$(".hide-for-printing").hide();
+						$("#print-button").text("bring back content!");
+					} else{
+
+						$(".hide-for-printing").show();
+						$("#print-button").text("prepare for printing");
+					}
+					printcounter++;
+				});
+			</script>
+		</div>
+
+		<div class="button-container">
+			<button class="button no-background ham-button" id="flexwrap-button">
+				<i class="material-icons">view_column</i>form single column
+			</button>
+			<script type="text/javascript">
+				var flexwrapcounter = 0;
+				
+
+				$( "#flexwrap-button").click(function() {
+					if(flexwrapcounter%2==0){
+						$("#hamburger-flexbox").removeClass("ham-containermain");
+						$("#hamburger-flexbox").addClass("ham-containermain-allow-wrap");
+						$("#flexwrap-button").text("back to two columns");
+					} else{
+						$("#hamburger-flexbox").removeClass("ham-containermain-allow-wrap");
+						$("#hamburger-flexbox").addClass("ham-containermain");
+						$("#flexwrap-button").text("form single column");
+					}
+					flexwrapcounter++;
+				});
+			</script>
+		</div>
+		<div class="button-container">
+			<button class="button no-background ham-button" id="page-history-button">
+				<i class="material-icons">history</i>show revision history
+			</button>
+			<script type="text/javascript">
+				var hiscounter = 0;
+				$( "#page-history-button").click(function() {
+					$( "#history" ).toggle(1000);
+				});
+			</script>
+		</div>
+
+	</div>
+
+	<div class="expanded-content">
+		
+		<div class="page-revision-history-left">
+
+			<div id="history" class="hidable ham-page-history" style="display: none;">
+
+				<p>16-FEB-19: Created.</p>
+
+			</div>
+
+
+		</div>
+	</div>
+	
+</body>
+</html>
+
+
